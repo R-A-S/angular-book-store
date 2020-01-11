@@ -50,7 +50,7 @@
     <button
       class="btn btn-outline-primary btn-block mt-3"
       type="submit"
-      [disabled]="form.invalid"
+      [disabled]="form.invalid || submitted"
     >
       <!--      -->
       <!--      onClick={this.signInAsync}-->

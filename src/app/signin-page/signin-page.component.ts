@@ -12,6 +12,8 @@ import { AuthService } from '../shared/services/auth.service';
 export class SigninPageComponent implements OnInit {
   form: FormGroup;
 
+  submitted = false;
+
   constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
@@ -28,6 +30,7 @@ export class SigninPageComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    this.submitted = true;
     const user: User = {
       username: this.form.value.name,
     };
@@ -35,6 +38,7 @@ export class SigninPageComponent implements OnInit {
     this.auth.login(user).subscribe(() => {
       this.form.reset();
       this.router.navigate(['/books']);
+      this.submitted = false;
     });
   }
 }

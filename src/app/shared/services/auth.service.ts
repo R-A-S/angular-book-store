@@ -9,7 +9,12 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   get token(): string {
-    return '';
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.logout();
+      return null;
+    }
+    return token;
   }
 
   login(user: User): Observable<any> {
@@ -18,13 +23,19 @@ export class AuthService {
       .pipe(tap(this.setToken));
   }
 
-  logout(): void {}
+  logout(): void {
+    this.setToken(null);
+  }
 
   isAuthenticated(): boolean {
     return !!this.token;
   }
 
-  private setToken(request: User): void {
-    console.log(request);
+  private setToken(responce: User | null): void {
+    if (responce) {
+      localStorage.setItem('token', responce.token);
+    } else {
+      localStorage.clear();
+    }
   }
 }
