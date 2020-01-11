@@ -4,7 +4,7 @@
     <!--    {isAuthenticated && (-->
     <form action="" class="form-inline">
       <!--      <Link to="{routes.cart}" />-->
-      <button type="button" class="btn btn-secondary mr-4">
+      <button type="button" class="btn btn-secondary mr-4" routerLink="/cart">
         <span role="img" aria-label="Cart">
           🛒
           <span class="badge badge-pill badge-light">
@@ -13,7 +13,11 @@
         </span>
       </button>
       <!--      </Link>-->
-      <button type="button" class="btn btn-secondary mr-4">
+      <button
+        type="button"
+        class="btn btn-secondary mr-4"
+        (click)="logout($event)"
+      >
         <!--onClick="{signOutHandler}"-->
 
         Sign-Out
