@@ -7,6 +7,7 @@ import { NotfoundPageComponent } from './notfound-page/notfound-page.component';
 import { BooksCardPageComponent } from './books-card-page/books-card-page.component';
 import { BookResolver } from './shared/book.resolver';
 import { CartPageComponent } from './cart-page/cart-page.component';
+import { AuthGuard } from './shared/services/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/signin', pathMatch: 'full' },
@@ -14,17 +15,33 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      { path: '', redirectTo: '/', pathMatch: 'full' },
-      { path: 'signin', component: SigninPageComponent },
-      { path: 'books', component: BooksPageComponent },
+      {
+        path: '',
+        redirectTo: '/',
+        pathMatch: 'full',
+      },
+      {
+        path: 'signin',
+        component: SigninPageComponent,
+      },
+      {
+        path: 'books',
+        component: BooksPageComponent,
+        canActivate: [AuthGuard],
+      },
       {
         path: 'books/:id',
         component: BooksCardPageComponent,
         resolve: {
           post: BookResolver,
         },
+        canActivate: [AuthGuard],
       },
-      { path: 'cart', component: CartPageComponent },
+      {
+        path: 'cart',
+        component: CartPageComponent,
+        canActivate: [AuthGuard],
+      },
     ],
   },
   { path: 'error', component: NotfoundPageComponent },

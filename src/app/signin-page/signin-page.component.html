@@ -1,5 +1,6 @@
 <main class="h-100 d-flex justify-content-center mt-5 pt-5">
   <form class="mt-5 form-group" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="alert alert-danger" *ngIf="message">{{ message }}</div>
     <img
       src="../../assets/img/jsBandCover.png"
       class="mb-4 rounded mx-auto d-block"

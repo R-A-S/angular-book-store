@@ -13,6 +13,7 @@ import { CartPageComponent } from './cart-page/cart-page.component';
 import { NotfoundPageComponent } from './notfound-page/notfound-page.component';
 import { BookComponent } from './shared/components/book/book.component';
 import { AuthService } from './shared/services/auth.service';
+import { AuthGuard } from './shared/services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,14 @@ import { AuthService } from './shared/services/auth.service';
     NotfoundPageComponent,
     BookComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
-  providers: [AuthService],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

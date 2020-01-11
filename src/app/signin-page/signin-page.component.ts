@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { User } from '../shared/interfaces';
 import { AuthService } from '../shared/services/auth.service';
 
@@ -14,9 +14,21 @@ export class SigninPageComponent implements OnInit {
 
   submitted = false;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  message: string;
+
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params.loginAgain) {
+        this.message = 'Please log in again.';
+      }
+    });
+
     this.form = new FormGroup({
       name: new FormControl(null, [
         Validators.required,
