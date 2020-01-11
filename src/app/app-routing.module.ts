@@ -8,31 +8,6 @@ import { BooksCardPageComponent } from './books-card-page/books-card-page.compon
 import { BookResolver } from './shared/book.resolver';
 import { CartPageComponent } from './cart-page/cart-page.component';
 
-// http://localhost:4200/ → HomeComponent
-// http://localhost:4200/about → AboutComponent
-//  → http://localhost:4200/about/extra → AboutExtraComponent
-// http://localhost:4200/posts → PostsComponent
-// http://localhost:4200/posts/:id → PostComponent
-// http://localhost:4200/error → ErrorPageComponent
-// const routes: Routes = [
-//   { path: '', component: HomeComponent },
-//   {
-//     path: 'about',
-//     component: AboutComponent,
-//     canActivateChild: [AuthGuard],
-//     children: [{ path: 'extra', component: AboutExtraComponent }],
-//   },
-//   { path: 'posts', component: PostsComponent, canActivate: [AuthGuard] },
-//   {
-//     path: 'posts/:id',
-//     component: PostComponent,
-//     resolve: {
-//       post: PostResolver,
-//     },
-//   },
-//   { path: 'error', component: ErrorPageComponent },
-//   { path: '**', redirectTo: '/error' },
-// ];
 const routes: Routes = [
   { path: '', redirectTo: '/signin', pathMatch: 'full' },
   {
