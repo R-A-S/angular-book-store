@@ -6,7 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { BookService } from './services/book.service';
-import { Book } from './imterfaces';
+import { Book } from './interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class BookResolver implements Resolve<Book> {

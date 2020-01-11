@@ -1,22 +1,46 @@
 <main class="h-100 d-flex justify-content-center mt-5 pt-5">
-  <form class="mt-5 form-group">
+  <form class="mt-5 form-group" [formGroup]="form" (ngSubmit)="submit()">
     <img
       src="../../assets/img/jsBandCover.png"
       class="mb-4 rounded mx-auto d-block"
       alt="jsBandCover"
       width="150"
     />
-    <label for="inputName" class="text-light text-center"
-      >Username<input
+    <label for="name" class="text-light text-center">Username</label>
+    <div
+      [ngClass]="{
+        invalid: form.get('name').dirty && form.get('name').invalid
+      }"
+    >
+      <input
         type="text"
-        id="inputName"
-        class="form-control is-valid"
+        id="name"
+        class="form-control"
         placeholder="type Username"
-        value=""
+        formControlName="name"
       />
-      <div class="valid-feedback">Name between 4 and 16 characters</div>
-      <div class="invalid-feedback">Field is not valid</div>
-    </label>
+      <div
+        class="validation"
+        *ngIf="form.get('name').dirty && form.get('name').invalid; else br"
+      >
+        <small *ngIf="form.get('name').errors.required">Field is empty </small>
+        <small *ngIf="form.get('name').errors.pattern"
+          >Only letters and digits are allowed
+        </small>
+        <small *ngIf="form.get('name').errors.minlength"
+          >Minimum
+          {{ form.get('name').errors.minlength.requiredLength }} characters.
+          Now: {{ form.get('name').errors.minlength.actualLength }}
+        </small>
+        <small *ngIf="form.get('name').errors.maxlength"
+          >Maximum
+          {{ form.get('name').errors.maxlength.requiredLength }} characters.
+          Now: {{ form.get('name').errors.maxlength.actualLength }}
+        </small>
+      </div>
+
+      <ng-template #br><br /></ng-template>
+    </div>
 
     <!--      class={`form-control ${isValid ? 'is-valid' : 'is-invalid'}`}-->
     <!--      value={username}-->
@@ -25,9 +49,10 @@
 
     <button
       class="btn btn-outline-primary btn-block mt-3"
-      type="button"
-      routerLink="/books"
+      type="submit"
+      [disabled]="form.invalid"
     >
+      <!--      -->
       <!--      onClick={this.signInAsync}-->
 
       Sign-in
