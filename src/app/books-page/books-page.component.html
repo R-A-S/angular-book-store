@@ -1,11 +1,11 @@
 <header class="container input-group pt-4">
   <div class="col-auto ">
     <label
-    ><input
-      class="form-control"
-      id="title"
-      type="search"
-      placeholder="search by title"
+      ><input
+        class="form-control"
+        id="title"
+        type="search"
+        placeholder="search by title"
     /></label>
     <!--      value={filterTitle}-->
     <!--      onChange={this.updateFilter}-->
@@ -24,34 +24,12 @@
 </header>
 <main class="container-fluid mt-5 w-75">
   <div class="row">
-
-    <div class="col-xl-3 col-lg-4 col-md-6 mt-2 mb-4 shadow" style="maxWidth:
-    400px">
-      <div class="card h-100 position-relative text-center">
-        <img
-          class="card-img-top align-self-center mt-2"
-          src=""
-          alt="Cover"
-          style="width: 95%"
-        />
-        <div class="card-body">
-          <h5 class="card-title text-center text-secondary">title</h5>
-          <p class="card-text text-secondary">author</p>
-        </div>
-        <div class="card-footer">
-          <span class="h-75 text-center text-dark float-left rounded pt-1">
-            <b>Price 100$</b>
-          </span>
-          <div class="float-right">
-<!--            <Link to={`/books/${id}`}></Link>-->
-            <button class="btn btn-secondary " type="button">
-              View
-            </button>
-
-          </div>
-        </div>
-      </div>
-    </div>
+    <app-book></app-book>
+    <app-book></app-book>
+    <app-book></app-book>
+    <app-book></app-book>
+    <app-book></app-book>
+    <app-book></app-book>
     <!--    {filteredBooks ? filteredBooks.map(book => <Book key={book.id} book={book} />) : null}-->
   </div>
 </main>

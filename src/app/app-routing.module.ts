@@ -25,10 +25,10 @@ const routes: Routes = [
         },
       },
       { path: 'cart', component: CartPageComponent },
-      { path: 'error', component: NotfoundPageComponent },
-      { path: '**', redirectTo: '/error' },
     ],
   },
+  { path: 'error', component: NotfoundPageComponent },
+  { path: '**', redirectTo: '/error' },
 ];
 
 @NgModule({

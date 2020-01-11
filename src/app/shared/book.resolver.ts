@@ -4,10 +4,9 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { Injectable } from '@angular/core';
-
-import { delay } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { Book, BookService } from './services/book.service';
+import { BookService } from './services/book.service';
+import { Book } from './imterfaces';
 
 @Injectable({ providedIn: 'root' })
 export class BookResolver implements Resolve<Book> {
@@ -17,8 +16,6 @@ export class BookResolver implements Resolve<Book> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<Book> | Promise<Book> | Book {
-    return of(route.params.id).pipe(
-      delay(1500), // response delay
-    );
+    return of(route.params.id).pipe();
   }
 }

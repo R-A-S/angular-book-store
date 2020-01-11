@@ -9,6 +9,7 @@ import { MainLayoutComponent } from './shared/components/main-layout/main-layout
 import { BooksCardPageComponent } from './books-card-page/books-card-page.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { NotfoundPageComponent } from './notfound-page/notfound-page.component';
+import { BookComponent } from './shared/components/book/book.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NotfoundPageComponent } from './notfound-page/notfound-page.component';
     BooksCardPageComponent,
     CartPageComponent,
     NotfoundPageComponent,
+    BookComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
