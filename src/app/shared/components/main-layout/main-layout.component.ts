@@ -8,11 +8,11 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./main-layout.component.scss'],
 })
 export class MainLayoutComponent implements OnInit {
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(private router: Router, public auth: AuthService) {}
 
   ngOnInit(): void {}
 
-  logout(event: Event): void {
+  logout(): void {
     this.auth.logout();
     this.router.navigate(['/signin']);
   }

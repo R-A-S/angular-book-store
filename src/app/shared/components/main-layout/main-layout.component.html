@@ -2,7 +2,7 @@
   <div class="container">
     <h3 class="navbar-brand">JS BAND STORE / Roman Stoliarenko</h3>
     <!--    {isAuthenticated && (-->
-    <form action="" class="form-inline">
+    <form action="" class="form-inline" *ngIf="auth.isAuthenticated()">
       <!--      <Link to="{routes.cart}" />-->
       <button type="button" class="btn btn-secondary mr-4" routerLink="/cart">
         <span role="img" aria-label="Cart">
@@ -13,11 +13,7 @@
         </span>
       </button>
       <!--      </Link>-->
-      <button
-        type="button"
-        class="btn btn-secondary mr-4"
-        (click)="logout($event)"
-      >
+      <button type="button" class="btn btn-secondary mr-4" (click)="logout()">
         <!--onClick="{signOutHandler}"-->
 
         Sign-Out
