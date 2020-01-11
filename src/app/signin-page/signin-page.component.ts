@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from '../shared/interfaces';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-signin-page',
@@ -10,7 +12,7 @@ import { User } from '../shared/interfaces';
 export class SigninPageComponent implements OnInit {
   form: FormGroup;
 
-  constructor() {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -22,13 +24,17 @@ export class SigninPageComponent implements OnInit {
     });
   }
 
-  submit(): void {
-    console.log(this.form);
+  submit() {
     if (this.form.invalid) {
-      return undefined;
+      return;
     }
     const user: User = {
-      username: this.form.value.name
-    }
+      username: this.form.value.name,
+    };
+    console.log(this.form.value.name);
+    this.auth.login(user).subscribe(() => {
+      this.form.reset();
+      this.router.navigate(['/books']);
+    });
   }
 }

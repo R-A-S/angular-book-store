@@ -8,6 +8,6 @@ export interface Book {
 
 export interface User {
   username: string;
-  token: string;
-  avatar: string;
+  token?: string;
+  avatar?: string;
 }
