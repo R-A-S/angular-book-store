@@ -1,0 +1,32 @@
+<main class="h-100 d-flex justify-content-center mt-5 pt-5">
+  <form class="mt-5 form-group">
+    <img
+      src="../../assets/img/jsBandCover.png"
+      class="mb-4 rounded mx-auto d-block"
+      alt="jsBandCover"
+      width="150"
+    />
+    <label for="inputName" class="text-light text-center"
+      >Username<input
+        type="text"
+        id="inputName"
+        class="form-control is-valid"
+        placeholder="type Username"
+        value=""
+      />
+      <div class="valid-feedback">Name between 4 and 16 characters</div>
+      <div class="invalid-feedback">Field is not valid</div>
+    </label>
+
+    <!--      class={`form-control ${isValid ? 'is-valid' : 'is-invalid'}`}-->
+    <!--      value={username}-->
+    <!--      onChange={this.validateUserName}-->
+    <!--      onKeyDown={this.enterHandler}-->
+
+    <button class="btn btn-outline-primary btn-block mt-3" type="button">
+      <!--      onClick={this.signInAsync}-->
+
+      Sign-in
+    </button>
+  </form>
+</main>
