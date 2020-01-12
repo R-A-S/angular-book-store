@@ -33,23 +33,24 @@ export class ApiService {
       );
   }
 
-  // fetchBook(bookId): Promise<Response> {
-  //   return this.http
-  //     .get<Book>(`${this.ROOT_URL}books/${bookId}`, {
-  //       ...httpOptions,
-  //       observe: 'response',
-  //     })
-  //     .pipe(
-  //       map((response) => {
-  //         // console.log(response);
-  //         return response.body;
-  //       }),
-  //       catchError((err) => {
-  //         console.log(err);
-  //         return throwError(err);
-  //       }),
-  //     );
-  // }
+  fetchBook(bookId: string): Observable<Book> {
+    return this.http
+      .get<Book>(`${this.ROOT_URL}books/${bookId}`, {
+        ...this.httpOptions,
+        observe: 'response',
+      })
+      .pipe(
+        map((response) => {
+          console.log('fetchBook response', response);
+          return response.body;
+        }),
+        catchError((err) => {
+          console.log('fetchBook Error', err);
+          return throwError(err);
+        }),
+      );
+  }
+
   //
   // purchase(booksId): Promise<Response> {
   //   httpOptions.headers.set('Content-Type', 'application/json');

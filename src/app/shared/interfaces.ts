@@ -4,6 +4,10 @@ export interface Book {
   title: string;
   author: string;
   price: number;
+  level: string;
+  tags: Array<string>;
+  description: string;
+  count: number;
 }
 
 export interface User {

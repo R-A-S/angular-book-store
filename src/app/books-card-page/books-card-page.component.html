@@ -1,22 +1,22 @@
-<main class="container  mt-5 pt-3">
+<main class="container  mt-5 pt-3" *ngIf="book$ | async as book; else loading">
   <div class="row mt-5  w-100 row  d-flex justify-content-between">
     <div class="card mb-3 col-md-8 col-lg-8 bg-dark border-0">
       <div class="row no-gutters">
         <div class="col-md-4">
-          <img src="" class="card-img" alt="Cover" />
+          <img src="{{book.cover}}" class="card-img" alt="Cover" />
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title border-bottom">title</h5>
-            <p class="card-text">Author: author</p>
-            <p class="card-text">Level: level</p>
+            <h5 class="card-title border-bottom">{{ book.title }}</h5>
+            <p class="card-text">Author: {{ book.author }}</p>
+            <p class="card-text">Level: {{ book.level }}</p>
             <p class="card-text">
-              <span class="text-muted">Tags: tags</span>
+              <span class="text-muted">Tags: {{ book.tags }}</span>
             </p>
           </div>
         </div>
       </div>
-      <div class="m-5">description</div>
+      <div class="m-5">{{ book.description }}</div>
     </div>
     <div class=" mb-3 text-light col-md-4 col-lg-4 bg-dark shadow-none">
       <div
@@ -26,7 +26,7 @@
         <ul class="list-unstyled mb-4">
           <li class="d-flex justify-content-between py-3 border-bottom">
             <strong>Price </strong>
-            <strong>11 </strong>
+            <strong>{{ book.price }}</strong>
           </li>
           <li class="d-flex justify-content-between py-3 border-bottom">
             <strong>Count </strong>
@@ -35,7 +35,7 @@
               style="width: 75px"
             >
               <span class="pt-1 pr-2">
-                <strong>22</strong>
+                <strong>count</strong>
               </span>
               <div class="d-flex flex-column">
                 <span
@@ -80,3 +80,14 @@
     </div>
   </div>
 </main>
+<ng-template #loading>
+  <div class=" position-absolute w-100 d-flex justify-content-center mt-4 ">
+    <div
+      class="spinner-border text-primary"
+      style="width: 3rem; height: 3rem"
+      role="status"
+    >
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>

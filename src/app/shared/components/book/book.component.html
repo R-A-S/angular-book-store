@@ -1,28 +1,26 @@
-
-  <div class="card h-100 position-relative text-center">
-    <img
-      class="card-img-top align-self-center mt-2"
-      [src]="book.cover"
-      alt="Cover"
-      style="width: 95%"
-    />
-    <div class="card-body">
-      <h5 class="card-title text-center text-secondary">{{ book.title }}</h5>
-      <p class="card-text text-secondary">{{ book.author }}</p>
-    </div>
-    <div class="card-footer">
-      <span class="h-75 text-center text-dark float-left rounded pt-1">
-        <b>Price {{ book.price }} $</b>
-      </span>
-      <div class="float-right">
-        <button
-          class="btn btn-secondary "
-          type="button"
-          [routerLink]="['/books', 123]"
-        >
-          View
-        </button>
-      </div>
+<div class="card h-100 position-relative text-center">
+  <img
+    class="card-img-top align-self-center mt-2"
+    [src]="book.cover"
+    alt="Cover"
+    style="width: 95%"
+  />
+  <div class="card-body">
+    <h5 class="card-title text-center text-secondary">{{ book.title }}</h5>
+    <p class="card-text text-secondary">{{ book.author }}</p>
+  </div>
+  <div class="card-footer">
+    <span class="h-75 text-center text-dark float-left rounded pt-1">
+      <b>Price {{ book.price }} $</b>
+    </span>
+    <div class="float-right">
+      <button
+        class="btn btn-secondary "
+        type="button"
+        [routerLink]="['/books', book.id]"
+      >
+        View
+      </button>
     </div>
   </div>
-
+</div>
