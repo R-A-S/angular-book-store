@@ -8,12 +8,10 @@
         placeholder="search by title"
         [(ngModel)]="searchStr"
     /></label>
-    <!--      value={filterTitle}-->
-    <!--      onChange={this.updateFilter}-->
   </div>
   <div class="col-auto ">
     <label
-      ><select class="form-control" id="price">
+      ><select class="form-control" id="price" [(ngModel)]="priceStr">
         <!--      onChange={this.updateFilter}-->
         <!--      onBlur={this.updateFilter}-->
 
@@ -30,7 +28,7 @@
     <app-book
       class="col-xl-3 col-lg-4 col-md-6 mt-2 mb-4 shadow"
       style="max-width:400px"
-      *ngFor="let book of books | searchBook: searchStr"
+      *ngFor="let book of books | searchBook: searchStr | priceFilter: priceStr"
       [book]="book"
     ></app-book>
   </div>

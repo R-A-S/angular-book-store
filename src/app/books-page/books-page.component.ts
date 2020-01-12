@@ -13,11 +13,11 @@ export class BooksPageComponent implements OnInit {
 
   searchStr = '';
 
+  priceStr = '0 Infinity';
+
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
     this.books$ = this.api.fetchBooks();
   }
-
-  search() {}
 }

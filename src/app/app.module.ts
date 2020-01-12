@@ -16,6 +16,7 @@ import { AuthService } from './shared/services/auth.service';
 import { AuthGuard } from './shared/services/auth.guard';
 import { ApiService } from './shared/services/api.service';
 import { SeachBookPipe } from './shared/pipes/seach.pipe';
+import { PriceFilterPipe } from './shared/pipes/price.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SeachBookPipe } from './shared/pipes/seach.pipe';
     CartPageComponent,
     NotfoundPageComponent,
     BookComponent,
-    SeachBookPipe
+    SeachBookPipe,
+    PriceFilterPipe
   ],
   imports: [
     BrowserModule,
