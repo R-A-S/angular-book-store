@@ -1,9 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark top bg-dark border-bottom">
   <div class="container">
     <h3 class="navbar-brand">JS BAND STORE / Roman Stoliarenko</h3>
-    <!--    {isAuthenticated && (-->
+
     <form action="" class="form-inline" *ngIf="auth.isAuthenticated()">
-      <!--      <Link to="{routes.cart}" />-->
       <button type="button" class="btn btn-secondary mr-4" routerLink="/cart">
         <span role="img" aria-label="Cart">
           🛒
@@ -12,18 +11,15 @@
           </span>
         </span>
       </button>
-      <!--      </Link>-->
-      <button type="button" class="btn btn-secondary mr-4" (click)="logout()">
-        <!--onClick="{signOutHandler}"-->
 
+      <button type="button" class="btn btn-secondary mr-4" (click)="logout()">
         Sign-Out
       </button>
       <div>
-        <img class="rounded-circle mr-2" width="40" alt="avatar" />
+        <img class="rounded-circle mr-2" width="40" alt="avatar" [src]="" />
         <!--          src="{user.avatar}"-->
-
         <strong
-          >userName
+          >user.username
           <!--          {user.username}-->
         </strong>
       </div>

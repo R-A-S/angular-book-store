@@ -6,6 +6,8 @@ import { User } from '../interfaces';
 
 @Injectable()
 export class AuthService {
+  user = {};
+
   constructor(private http: HttpClient) {}
 
   get token(): string {
@@ -17,7 +19,7 @@ export class AuthService {
     return token;
   }
 
-  login(user: User): Observable<any> {
+  login(user: User): Observable<User | null> {
     return this.http
       .post('https://js-band-api.glitch.me/signin', { username: user.username })
       .pipe(tap(this.setToken));
@@ -34,6 +36,7 @@ export class AuthService {
   private setToken(responce: User | null): void {
     if (responce) {
       localStorage.setItem('token', responce.token);
+      this.user = responce;
     } else {
       localStorage.clear();
     }

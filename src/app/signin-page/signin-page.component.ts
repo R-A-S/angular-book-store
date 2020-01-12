@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { User } from '../shared/interfaces';
 import { AuthService } from '../shared/services/auth.service';
 
 @Component({
@@ -38,12 +37,12 @@ export class SigninPageComponent implements OnInit {
     });
   }
 
-  submit() {
+  submit(): void {
     if (this.form.invalid) {
       return;
     }
     this.submitted = true;
-    const user: User = {
+    const user = {
       username: this.form.value.name,
     };
     console.log(this.form.value.name);

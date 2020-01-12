@@ -1,5 +1,5 @@
 <header class="container input-group pt-4">
-  <div class="col-auto ">
+  <div class="col-auto">
     <label
       ><input
         class="form-control"
@@ -11,25 +11,38 @@
     <!--      onChange={this.updateFilter}-->
   </div>
   <div class="col-auto ">
-    <select class="form-control" id="price">
-      <!--      onChange={this.updateFilter}-->
-      <!--      onBlur={this.updateFilter}-->
+    <label
+      ><select class="form-control" id="price">
+        <!--      onChange={this.updateFilter}-->
+        <!--      onBlur={this.updateFilter}-->
 
-      <option value="0 Infinity">Price</option>
-      <option value="0 15">Price←15</option>
-      <option value="15 30">15←Price→30</option>
-      <option value="30 Infinity">30→Price</option>
-    </select>
+        <option value="0 Infinity">Price</option>
+        <option value="0 15">Price←15</option>
+        <option value="15 30">15←Price→30</option>
+        <option value="30 Infinity">30→Price</option>
+      </select></label
+    >
   </div>
 </header>
-<main class="container-fluid mt-5 w-75">
-  <div class="row">
-    <app-book></app-book>
-    <app-book></app-book>
-    <app-book></app-book>
-    <app-book></app-book>
-    <app-book></app-book>
-    <app-book></app-book>
-    <!--    {filteredBooks ? filteredBooks.map(book => <Book key={book.id} book={book} />) : null}-->
+<main class="container-fluid mt-5">
+  <div class="row" *ngIf="books$ | async as books; else loading">
+    <app-book
+      class="col-xl-3 col-lg-4 col-md-6 mt-2 mb-4 shadow"
+      style="max-width:400px"
+      *ngFor="let book of books"
+      [book]="book"
+    ></app-book>
   </div>
+
+  <ng-template #loading>
+    <div class=" position-absolute w-100 d-flex justify-content-center mt-4 ">
+      <div
+        class="spinner-border text-primary"
+        style="width: 3rem; height: 3rem"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
 </main>

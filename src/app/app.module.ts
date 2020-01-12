@@ -14,6 +14,7 @@ import { NotfoundPageComponent } from './notfound-page/notfound-page.component';
 import { BookComponent } from './shared/components/book/book.component';
 import { AuthService } from './shared/services/auth.service';
 import { AuthGuard } from './shared/services/auth.guard';
+import { ApiService } from './shared/services/api.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { AuthGuard } from './shared/services/auth.guard';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, ApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
