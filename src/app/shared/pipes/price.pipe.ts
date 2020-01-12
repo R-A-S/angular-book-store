@@ -11,7 +11,6 @@ export class PriceFilterPipe implements PipeTransform {
       min: value[0],
       max: value[1],
     };
-    console.log(filterValue);
     return books.filter(
       (book) =>
         +filterValue.min <= book.price && book.price <= +filterValue.max,
