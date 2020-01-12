@@ -35,7 +35,7 @@
               style="width: 75px"
             >
               <span class="pt-1 pr-2">
-                <strong>count</strong>
+                <strong>{{ book.count >= count ? count : book.count }}</strong>
               </span>
               <div class="d-flex flex-column">
                 <span
@@ -44,8 +44,8 @@
                   id="+"
                   class="badge"
                   style="cursor: pointer"
+                  (click)="increaseCount()"
                 >
-                  <!--              onClick={this.updateCount}-->
                   <!--              onKeyDown={this.keyCountHandler}-->
 
                   ➕
@@ -56,6 +56,7 @@
                   id="-"
                   class="badge"
                   style="cursor: pointer"
+                  (click)="decreaseCount()"
                 >
                   <!--              onKeyDown={this.keyCountHandler}-->
 
