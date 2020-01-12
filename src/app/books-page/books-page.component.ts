@@ -11,9 +11,13 @@ import { Book } from '../shared/interfaces';
 export class BooksPageComponent implements OnInit {
   books$: Observable<Book[]>;
 
+  searchStr = '';
+
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
     this.books$ = this.api.fetchBooks();
   }
+
+  search() {}
 }

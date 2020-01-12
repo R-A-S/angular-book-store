@@ -6,6 +6,7 @@
         id="title"
         type="search"
         placeholder="search by title"
+        [(ngModel)]="searchStr"
     /></label>
     <!--      value={filterTitle}-->
     <!--      onChange={this.updateFilter}-->
@@ -29,7 +30,7 @@
     <app-book
       class="col-xl-3 col-lg-4 col-md-6 mt-2 mb-4 shadow"
       style="max-width:400px"
-      *ngFor="let book of books"
+      *ngFor="let book of books | searchBook: searchStr"
       [book]="book"
     ></app-book>
   </div>
