@@ -18,7 +18,7 @@ export class BooksCardPageComponent implements OnInit {
 
   book$: Observable<Book>;
 
-  currentCount = 1;
+  currentCount = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -66,5 +66,24 @@ export class BooksCardPageComponent implements OnInit {
     }
 
     return freeCount === 0 ? 0 : 1;
+  }
+
+  addToCart(): void {
+    const existIndex = this.cart.findIndex((book) => book.id === this.book.id);
+    let bookToAdd;
+    if (existIndex !== -1) {
+      bookToAdd = {
+        ...this.book,
+        count: this.cart[existIndex].count + this.currentCount,
+      };
+      this.cart[existIndex] = bookToAdd;
+    } else {
+      bookToAdd = {
+        ...this.book,
+        count: this.currentCount,
+      };
+      this.cart.push(bookToAdd);
+    }
+    this.currentCount = this.validateCount(1, null);
   }
 }

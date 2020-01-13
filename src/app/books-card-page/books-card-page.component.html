@@ -35,7 +35,9 @@
               style="width: 75px"
             >
               <span class="pt-1 pr-2">
-                <strong>{{ book.count >= currentCount ? currentCount : book.count }}</strong>
+                <strong>{{
+                  book.count >= currentCount ? currentCount : book.count
+                }}</strong>
               </span>
               <div class="d-flex flex-column">
                 <span
@@ -68,13 +70,11 @@
           <li class="d-flex justify-content-between py-3 border-bottom">
             <strong>Total price </strong>
             <h5 class="font-weight-bold">
-              $100
+              ${{ (book.price * currentCount).toFixed(2) }}
             </h5>
           </li>
         </ul>
-        <button type="button" class="btn btn-secondary">
-          <!--          onClick="{this.addToCart}"-->
-
+        <button type="button" class="btn btn-secondary" (click)="addToCart()">
           Add to cart
         </button>
       </div>

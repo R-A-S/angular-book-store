@@ -20,7 +20,7 @@ export class BookComponent implements OnInit {
     });
   }
 
-  updateBook(book) {
+  updateBook(book): void {
     this.state.changeBook(book);
   }
 }
