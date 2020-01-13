@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
+import { StateService } from '../shared/services/state.service';
+import { User } from '../shared/interfaces';
 
 @Component({
   selector: 'app-signin-page',
@@ -15,10 +17,13 @@ export class SigninPageComponent implements OnInit {
 
   message: string;
 
+  user: User;
+
   constructor(
     private auth: AuthService,
     private router: Router,
     private route: ActivatedRoute,
+    private state: StateService,
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +31,9 @@ export class SigninPageComponent implements OnInit {
       if (params.loginAgain) {
         this.message = 'Please log in again.';
       }
+      this.state.user.subscribe((result) => {
+        this.user = result;
+      });
     });
 
     this.form = new FormGroup({
@@ -42,11 +50,11 @@ export class SigninPageComponent implements OnInit {
       return;
     }
     this.submitted = true;
-    const user = {
+    const userLogin = {
       username: this.form.value.name,
     };
-    console.log(this.form.value.name);
-    this.auth.login(user).subscribe(() => {
+    this.auth.login(userLogin).subscribe((user) => {
+      this.state.changeUser(user);
       this.form.reset();
       this.router.navigate(['/books']);
       this.submitted = false;

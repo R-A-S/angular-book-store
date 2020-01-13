@@ -16,10 +16,15 @@
         Sign-Out
       </button>
       <div>
-        <img class="rounded-circle mr-2" width="40" alt="avatar" [src]="" />
+        <img
+          class="rounded-circle mr-2"
+          width="40"
+          alt="avatar"
+          [src]="user.avatar"
+        />
         <!--          src="{user.avatar}"-->
         <strong
-          >user.username
+          >{{user.username}}
           <!--          {user.username}-->
         </strong>
       </div>

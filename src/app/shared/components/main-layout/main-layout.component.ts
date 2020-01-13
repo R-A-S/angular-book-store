@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../interfaces';
+import { StateService } from '../../services/state.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -9,14 +10,22 @@ import { User } from '../../interfaces';
   styleUrls: ['./main-layout.component.scss'],
 })
 export class MainLayoutComponent implements OnInit {
+  user: User;
 
-
-  constructor(private router: Router, public auth: AuthService) {}
+  constructor(
+    private router: Router,
+    public auth: AuthService,
+    private state: StateService,
+  ) {}
 
   ngOnInit(): void {
+    this.state.user.subscribe((result) => {
+      this.user = result;
+    });
   }
 
   logout(): void {
+    console.log(this.user);
     this.auth.logout();
     this.router.navigate(['/signin']);
   }

@@ -17,6 +17,7 @@ import { AuthGuard } from './shared/services/auth.guard';
 import { ApiService } from './shared/services/api.service';
 import { SeachBookPipe } from './shared/pipes/seach.pipe';
 import { PriceFilterPipe } from './shared/pipes/price.pipe';
+import { StateService } from './shared/services/state.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { PriceFilterPipe } from './shared/pipes/price.pipe';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService, AuthGuard, ApiService],
+  providers: [AuthService, AuthGuard, ApiService, StateService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
