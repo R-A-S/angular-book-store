@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Book } from '../shared/interfaces';
 import { StateService } from '../shared/services/state.service';
 
@@ -10,7 +10,7 @@ import { StateService } from '../shared/services/state.service';
 export class CartPageComponent implements OnInit {
   cart: Array<Book>;
 
-  // total = this.updateTotal();
+  total: string;
 
   constructor(private state: StateService) {}
 
@@ -18,12 +18,12 @@ export class CartPageComponent implements OnInit {
     this.state.cart.subscribe((result) => {
       this.cart = result;
     });
+    this.updateTotal();
   }
 
-
-  // updateTotal(): void {
-  //   this.cart
-  //     .reduce((acc, book) => acc + book.price * book.count, 0)
-  //     .toFixed(2);
-  // }
+  updateTotal(): void {
+    this.total = this.cart
+      .reduce((acc, book) => acc + book.price * book.count, 0)
+      .toFixed(2);
+  }
 }

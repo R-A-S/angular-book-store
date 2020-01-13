@@ -40,14 +40,10 @@ export class BooksCardPageComponent implements OnInit {
   }
 
   increaseCount(): void | null {
-    console.log(this.currentCount);
-    console.log(this.book.count);
     this.currentCount = this.validateCount(this.currentCount, true);
   }
 
   decreaseCount(): void {
-    console.log(this.currentCount);
-    console.log(this.book.count);
     this.currentCount = this.validateCount(this.currentCount, false);
   }
 
