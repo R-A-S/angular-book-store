@@ -49,16 +49,24 @@ export class ApiService {
       );
   }
 
-  //
-  // purchase(booksId): Promise<Response> {
-  //   httpOptions.headers.set('Content-Type', 'application/json');
-  //   return fetch(`${this.ROOT_URL}purchase`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${this.token}`,
-  //     },
-  //     body: JSON.stringify({ books: booksId }),
-  //   });
-  // }
+  purchase(booksId): Observable<any> {
+    this.httpOptions.headers.set('Content-Type', 'application/json');
+    return this.http
+      .post<Book>(
+        `${this.ROOT_URL}purchase`,
+        { books: booksId },
+        {
+          ...this.httpOptions,
+          observe: 'response',
+        },
+      )
+      .pipe(
+        map((response) => {
+          return response.body;
+        }),
+        catchError((err) => {
+          return throwError(err);
+        }),
+      );
+  }
 }
