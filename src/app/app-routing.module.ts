@@ -7,7 +7,7 @@ import { NotfoundPageComponent } from './notfound-page/notfound-page.component';
 import { BooksCardPageComponent } from './books-card-page/books-card-page.component';
 import { BookResolver } from './shared/book.resolver';
 import { CartPageComponent } from './cart-page/cart-page.component';
-import { AuthGuard } from './shared/services/auth.guard';
+import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/signin', pathMatch: 'full' },

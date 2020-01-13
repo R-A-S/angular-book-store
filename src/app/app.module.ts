@@ -13,7 +13,7 @@ import { CartPageComponent } from './cart-page/cart-page.component';
 import { NotfoundPageComponent } from './notfound-page/notfound-page.component';
 import { BookComponent } from './shared/components/book/book.component';
 import { AuthService } from './shared/services/auth.service';
-import { AuthGuard } from './shared/services/auth.guard';
+import { AuthGuard } from './shared/auth.guard';
 import { ApiService } from './shared/services/api.service';
 import { SeachBookPipe } from './shared/pipes/seach.pipe';
 import { PriceFilterPipe } from './shared/pipes/price.pipe';
