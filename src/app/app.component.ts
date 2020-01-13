@@ -1,10 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { NavigationStart, Router } from '@angular/router';
+
+// eslint-disable-next-line import/no-mutable-exports
+export let browserRefresh = false;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'angular-book-store';
+export class AppComponent implements OnDestroy {
+  subscription: Subscription;
+
+  constructor(private router: Router) {
+    this.subscription = router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        browserRefresh = !router.navigated;
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }

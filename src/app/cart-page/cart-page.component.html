@@ -13,23 +13,21 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">title</th>
-        <td>11</td>
-        <td>22</td>
-      </tr>
-      <tr>
-        <th scope="row">title</th>
-        <td>33</td>
-        <td>44</td>
-      </tr>
       <!--    {cart.map((book, index) => (-->
-      <!--              <CartItem key={`${+index}${book.id}`} book={book} />-->
-      <!--            ))}-->
+      <!--                    <CartItem key={`${+index}${book.id}`} book={book} />-->
+      <!--                  ))}-->
+
+      <tr *ngFor="let item of cart">
+        <th scope="row">{{ item.title }}</th>
+        <td>{{ item.count }}</td>
+        <td>{{ (item.count * item.price).toFixed(2) }}</td>
+      </tr>
     </tbody>
   </table>
-  <span class="float-right text-light mr-5 "> <b> Total price, $ 100</b></span>
-  <!--            {cart.reduce((acc, book) => acc + book.price * book.currentCount, 0).toFixed(2)}-->
+<!--  <span class="float-right text-light mr-5 ">-->
+  <!--    <b> Total price, $ {{ total }}</b></span-->
+  <!--  >-->
+  <!--            {}-->
 </div>
 <!--) : (-->
 <div

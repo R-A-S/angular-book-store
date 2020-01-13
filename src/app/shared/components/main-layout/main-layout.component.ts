@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../interfaces';
 import { StateService } from '../../services/state.service';
+import { browserRefresh } from '../../../app.component';
 
 @Component({
   selector: 'app-main-layout',
@@ -22,6 +23,11 @@ export class MainLayoutComponent implements OnInit {
     this.state.user.subscribe((result) => {
       this.user = result;
     });
+
+    if (browserRefresh) {
+      this.state.getState();
+    }
+
   }
 
   logout(): void {

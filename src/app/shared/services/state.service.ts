@@ -18,13 +18,35 @@ export class StateService {
 
   changeCart(cart): void {
     this.cartSource.next(cart);
+    this.setState();
   }
 
   changeUser(user): void {
     this.userSource.next(user);
+    this.setState();
   }
 
   changeBook(book): void {
     this.bookSource.next(book);
+    this.setState();
+  }
+
+  setState() {
+    localStorage.setItem(
+      'store',
+      JSON.stringify({
+        cart: this.cart.source._value,
+        user: this.user.source._value,
+        book: this.book.source._value,
+      }),
+    );
+  }
+
+  getState(): void {
+    const store = JSON.parse(localStorage.getItem('store'));
+    console.log(store);
+    this.changeBook(store.book);
+    this.changeUser(store.user);
+    this.changeCart(store.cart);
   }
 }

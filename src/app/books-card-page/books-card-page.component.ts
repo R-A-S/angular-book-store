@@ -85,5 +85,6 @@ export class BooksCardPageComponent implements OnInit {
       this.cart.push(bookToAdd);
     }
     this.currentCount = this.validateCount(1, null);
+    this.state.changeCart(this.cart);
   }
 }
