@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Book } from '../../interfaces';
+import { StateService } from '../../services/state.service';
 
 @Component({
   selector: 'app-book',
@@ -9,7 +10,17 @@ import { Book } from '../../interfaces';
 export class BookComponent implements OnInit {
   @Input() book: Book;
 
-  constructor() {}
+  currentBook: Book;
 
-  ngOnInit() {}
+  constructor(private state: StateService) {}
+
+  ngOnInit(): void {
+    this.state.book.subscribe((result) => {
+      this.currentBook = result;
+    });
+  }
+
+  updateBook(book) {
+    this.state.changeBook(book);
+  }
 }

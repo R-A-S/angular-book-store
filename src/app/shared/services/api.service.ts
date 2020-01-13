@@ -41,11 +41,9 @@ export class ApiService {
       })
       .pipe(
         map((response) => {
-          console.log('fetchBook response', response);
           return response.body;
         }),
         catchError((err) => {
-          console.log('fetchBook Error', err);
           return throwError(err);
         }),
       );

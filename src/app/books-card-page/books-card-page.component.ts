@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ApiService } from '../shared/services/api.service';
 import { Book } from '../shared/interfaces';
+import { StateService } from '../shared/services/state.service';
 
 @Component({
   selector: 'app-books-card-page',
@@ -11,45 +12,59 @@ import { Book } from '../shared/interfaces';
   styleUrls: ['./books-card-page.component.scss'],
 })
 export class BooksCardPageComponent implements OnInit {
+  book: Book;
+
+  cart: Array<Book>;
+
   book$: Observable<Book>;
 
-  count = 1;
+  currentCount = 1;
 
-  constructor(private route: ActivatedRoute, private api: ApiService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private api: ApiService,
+    private state: StateService,
+  ) {}
 
   ngOnInit(): void {
     this.book$ = this.route.params.pipe(
       switchMap((params) => this.api.fetchBook(params.id)),
     );
+    this.state.cart.subscribe((result) => {
+      this.cart = result;
+    });
+    this.state.book.subscribe((result) => {
+      this.book = result;
+    });
+    this.validateCount(1, null);
+  }
+
+  increaseCount(): void | null {
+    console.log(this.currentCount);
+    console.log(this.book.count);
+    this.currentCount = this.validateCount(this.currentCount, true);
   }
 
   decreaseCount(): void {
-    this.count -= 1;
+    console.log(this.currentCount);
+    console.log(this.book.count);
+    this.currentCount = this.validateCount(this.currentCount, false);
   }
 
-  increaseCount(): void {
-    this.count += 1;
-  }
+  validateCount(currentCount, operation): number {
+    const cartItem = this.cart.find((book) => book.id === this.book.id);
+    const freeCount = cartItem
+      ? this.book.count - cartItem.count
+      : this.book.count;
 
-  // validateCount(operation) {
-  //   // const {
-  //   //   cart,
-  //   //   book: { id, count: bookCount },
-  //   // } = this.props;
-  //
-  //   // const cartItem = cart.find((book) => book.id === id);
-  //   // const freeCount = cartItem
-  //   //   ? this.book$.count - cartItem.currentCount
-  //   //   : this.book$.count;
-  //   const freeCount = 5;
-  //   if (operation !== undefined) {
-  //     const isValid = operation ? this.count < freeCount : this.count > 0;
-  //     if (!isValid) {
-  //       return freeCount > 0 ? this.count : 0;
-  //     }
-  //     return operation ? this.count + 1 : this.count - 1;
-  //   }
-  //
-  //   return freeCount === 0 ? 0 : 1;
-  // }
+    if (operation !== null) {
+      const isValid = operation ? currentCount < freeCount : currentCount > 0;
+      if (!isValid) {
+        return freeCount > 0 ? currentCount : 0;
+      }
+      return operation ? currentCount + 1 : currentCount - 1;
+    }
+
+    return freeCount === 0 ? 0 : 1;
+  }
 }
