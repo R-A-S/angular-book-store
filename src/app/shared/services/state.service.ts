@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Book, User } from '../interfaces';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class StateService {
@@ -15,6 +16,8 @@ export class StateService {
   private bookSource = new BehaviorSubject<Book>({});
 
   book = this.bookSource.asObservable();
+
+  constructor(private auth: AuthService) {}
 
   changeCart(cart): void {
     this.cartSource.next(cart);
@@ -31,22 +34,24 @@ export class StateService {
     this.setState();
   }
 
-  setState() {
+  setState(): void {
     localStorage.setItem(
-      'store',
+      `store${this.auth.token}`,
       JSON.stringify({
-        cart: this.cart.source._value,
-        user: this.user.source._value,
-        book: this.book.source._value,
+        cart: this.cartSource.value,
+        user: this.userSource.value,
+        book: this.bookSource.value,
       }),
     );
   }
 
   getState(): void {
-    const store = JSON.parse(localStorage.getItem('store'));
-    console.log(store);
-    this.changeBook(store.book);
-    this.changeUser(store.user);
-    this.changeCart(store.cart);
+    if (this.auth.isAuthenticated()) {
+      const store = JSON.parse(localStorage.getItem(`store${this.auth.token}`));
+
+      this.changeBook(store.book);
+      this.changeUser(store.user);
+      this.changeCart(store.cart);
+    }
   }
 }

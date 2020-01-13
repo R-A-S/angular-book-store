@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   logout(): void {
-    this.setToken(null);
+    localStorage.clear();
   }
 
   isAuthenticated(): boolean {
