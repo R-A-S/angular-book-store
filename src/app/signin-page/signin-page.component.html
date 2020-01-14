@@ -11,7 +11,11 @@
       <span class="sr-only">Loading...</span>
     </div>
   </div>
-  <form class="mt-5 form-group" [formGroup]="form" (ngSubmit)="submit()">
+  <form
+    class="mt-5 form-group  text-center"
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+  >
     <div class="alert alert-danger" *ngIf="message">{{ message }}</div>
     <img
       src="../../assets/img/jsBandCover.png"
@@ -19,7 +23,7 @@
       alt="jsBandCover"
       width="150"
     />
-    <label for="name" class="text-light text-center">Username</label>
+    <label for="name" class="text-light">Username</label>
     <div
       [ngClass]="{
         invalid: form.get('name').dirty && form.get('name').invalid

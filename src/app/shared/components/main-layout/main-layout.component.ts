@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { User } from '../../interfaces';
+import { Book, User } from '../../interfaces';
 import { StateService } from '../../services/state.service';
 import { browserRefresh } from '../../../app.component';
 
@@ -13,6 +13,8 @@ import { browserRefresh } from '../../../app.component';
 export class MainLayoutComponent implements OnInit {
   user: User;
 
+  cart: Array<Book>;
+
   constructor(
     private router: Router,
     public auth: AuthService,
@@ -23,11 +25,13 @@ export class MainLayoutComponent implements OnInit {
     this.state.user.subscribe((result) => {
       this.user = result;
     });
+    this.state.cart.subscribe((result) => {
+      this.cart = result;
+    });
 
     if (browserRefresh) {
       this.state.getState();
     }
-
   }
 
   logout(): void {

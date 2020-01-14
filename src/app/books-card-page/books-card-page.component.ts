@@ -18,7 +18,7 @@ export class BooksCardPageComponent implements OnInit {
 
   book$: Observable<Book>;
 
-  currentCount = 0;
+  currentCount: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,7 +36,7 @@ export class BooksCardPageComponent implements OnInit {
     this.state.book.subscribe((result) => {
       this.book = result;
     });
-    this.validateCount(1, null);
+    this.currentCount = this.validateCount(1, null);
   }
 
   increaseCount(): void | null {
@@ -78,9 +78,13 @@ export class BooksCardPageComponent implements OnInit {
         ...this.book,
         count: this.currentCount,
       };
-      this.cart.push(bookToAdd);
+      if (this.currentCount) {
+        this.cart.push(bookToAdd);
+      }
     }
-    this.currentCount = this.validateCount(1, null);
+
     this.state.changeCart(this.cart);
+
+    this.currentCount = this.validateCount(1, null);
   }
 }

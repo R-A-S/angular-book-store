@@ -7,7 +7,7 @@
         <span role="img" aria-label="Cart">
           🛒
           <span class="badge badge-pill badge-light">
-            <!--            { cart.length}-->
+            {{ cart.length }}
           </span>
         </span>
       </button>
@@ -22,14 +22,9 @@
           alt="avatar"
           [src]="user.avatar"
         />
-        <!--          src="{user.avatar}"-->
-        <strong
-          >{{user.username}}
-          <!--          {user.username}-->
-        </strong>
+        <strong>{{ user.username }} </strong>
       </div>
     </form>
-    <!--        )}-->
   </div>
 </nav>
 
