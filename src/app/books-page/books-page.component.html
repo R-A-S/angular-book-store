@@ -1,4 +1,17 @@
 <header class="container input-group pt-4">
+
+  <ng-template #loading>
+    <div class=" w-100 d-flex justify-content-center mt-4 ">
+      <div
+        class="spinner-border text-primary"
+        style="width: 3rem; height: 3rem"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
+
   <div class="col-auto">
     <label
       ><input
@@ -12,9 +25,6 @@
   <div class="col-auto ">
     <label
       ><select class="form-control" id="price" [(ngModel)]="priceStr">
-        <!--      onChange={this.updateFilter}-->
-        <!--      onBlur={this.updateFilter}-->
-
         <option value="0 Infinity">Price</option>
         <option value="0 15">Price←15</option>
         <option value="15 30">15←Price→30</option>
@@ -32,16 +42,4 @@
       [book]="book"
     ></app-book>
   </div>
-
-  <ng-template #loading>
-    <div class=" position-absolute w-100 d-flex justify-content-center mt-4 ">
-      <div
-        class="spinner-border text-primary"
-        style="width: 3rem; height: 3rem"
-        role="status"
-      >
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
-  </ng-template>
 </main>

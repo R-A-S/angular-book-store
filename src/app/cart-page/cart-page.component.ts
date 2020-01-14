@@ -16,6 +16,8 @@ export class CartPageComponent implements OnInit {
 
   message$: Observable<any>;
 
+  isFetching = false;
+
   constructor(private state: StateService, private api: ApiService) {}
 
   ngOnInit(): void {
@@ -32,8 +34,13 @@ export class CartPageComponent implements OnInit {
   }
 
   purchase(): void {
+    this.isFetching = true;
     const books = this.cart.map((book) => book.id);
     this.message$ = this.api.purchase(books);
+
+    this.message$.subscribe(() => {
+      this.isFetching = false;
+    });
   }
 
   clearCart() {
