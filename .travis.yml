@@ -18,6 +18,9 @@ before_script:
 script:
   - npm run lint
   - ng build --prod --base-href https://ras.pp.ua/angular-book-store/
+  - cd dist/angular-book-store
+  - cp index.html 404.html
+
 deploy:
   provider: pages
   skip_cleanup: true
