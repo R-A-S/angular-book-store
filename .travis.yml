@@ -1,18 +1,23 @@
-#dist: trusty
 language: node_js
 node_js:
   - lts/*
-install:
-  - npm ci
-cache:
-  directories:
-    - "$HOME/.npm"
+dist: trusty
+sudo: required
+
 branches:
   only:
     - master
+
+cache:
+  directories:
+    - '$HOME/.npm'
+
+before_script:
+  - npm install -g @angular/cli
+
 script:
   - npm run lint
-  - npm run build
+  - ng build --prod --base-href https://R-A-S.github.io/angular-book-store/
 deploy:
   provider: pages
   skip_cleanup: true
