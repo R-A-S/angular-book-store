@@ -56,7 +56,7 @@ export class SigninPageComponent implements OnInit {
     this.auth.login(userLogin).subscribe((user) => {
       this.state.changeUser(user);
       this.form.reset();
-      this.router.navigate(['/books']);
+      this.router.navigate(['/books']).then((r) => r);
       this.submitted = false;
     });
   }
