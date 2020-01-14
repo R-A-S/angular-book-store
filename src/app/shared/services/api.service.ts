@@ -49,7 +49,7 @@ export class ApiService {
       );
   }
 
-  purchase(booksId): Observable<any> {
+  purchase(booksId): Observable<{}> {
     this.httpOptions.headers.set('Content-Type', 'application/json');
     return this.http
       .post<Book>(

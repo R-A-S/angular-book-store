@@ -5,6 +5,7 @@ import { Book } from '../interfaces';
   name: 'searchBook',
 })
 export class SeachBookPipe implements PipeTransform {
+  // eslint-disable-next-line class-methods-use-this
   transform(books: Book[], search = ''): Book[] {
     if (!search.trim()) {
       return books;

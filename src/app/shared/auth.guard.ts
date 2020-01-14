@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
@@ -12,6 +13,7 @@ import { AuthService } from './services/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {}
 
+  // eslint-disable-next-line consistent-return
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,

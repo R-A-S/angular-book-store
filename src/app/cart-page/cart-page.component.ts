@@ -14,7 +14,7 @@ export class CartPageComponent implements OnInit {
 
   total: string;
 
-  message$: Observable<any>;
+  message$: Observable<{}>;
 
   isFetching = false;
 
@@ -43,7 +43,7 @@ export class CartPageComponent implements OnInit {
     });
   }
 
-  clearCart() {
+  clearCart(): void {
     this.state.changeCart([]);
   }
 }

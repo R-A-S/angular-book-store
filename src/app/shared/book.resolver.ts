@@ -11,6 +11,7 @@ import { Book } from './interfaces';
 export class BookResolver implements Resolve<Book> {
   resolve(
     route: ActivatedRouteSnapshot,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     state: RouterStateSnapshot,
   ): Observable<Book> | Promise<Book> | Book {
     return of(route.params.id).pipe();

@@ -5,6 +5,7 @@ import { Book } from '../interfaces';
   name: 'priceFilter',
 })
 export class PriceFilterPipe implements PipeTransform {
+  // eslint-disable-next-line class-methods-use-this
   transform(books: Book[], filter: string): Book[] {
     const value = filter.split(' ');
     const filterValue = {

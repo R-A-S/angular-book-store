@@ -36,6 +36,6 @@ export class MainLayoutComponent implements OnInit {
 
   logout(): void {
     this.auth.logout();
-    this.router.navigate(['/signin']);
+    this.router.navigate(['/signin']).then((r) => r);
   }
 }
