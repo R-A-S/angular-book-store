@@ -44,8 +44,14 @@ const routes: Routes = [
       },
     ],
   },
-  { path: 'error', component: NotfoundPageComponent },
-  { path: '**', redirectTo: '/error' },
+  {
+    path: 'error',
+    component: NotfoundPageComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '/error',
+  },
 ];
 
 @NgModule({
